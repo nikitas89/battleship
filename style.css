@@ -1,0 +1,31 @@
+.container {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.wrapper {
+  /*border: 1px dashed blue;*/
+  width: 260px;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+  /*height: 500px;*/
+  position: relative;
+  float: left;
+}
+
+.box {
+  border: 1px solid black;
+  width: 30px;
+  height: 30px;
+  transition: all .2s ease-in;
+  opacity: 1;
+}
+
+/*.player1{
+    background-image: url(../images/grumpycat-m.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    opacity: 1
+}*/

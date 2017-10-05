@@ -63,7 +63,7 @@ for (var z = 0; z < 8; z++) {
     if (x+z>7){
     emptyIndexes.splice(emptyIndexes.indexOf(z), 1)
     break }
-    else if (grid[z + x][h] === 0) {
+    else if (grid[z+x][h] === 0) {
      ""}
     else {
       emptyIndexes.splice(emptyIndexes.indexOf(z), 1)
@@ -104,7 +104,7 @@ for (var z = 0; z < 8; z++) {
 //   grid[vertStart][start]=ship
 // }
 // }
-console.log(grid)
+// console.log(grid)
 //--------------------
 //vert placement - find start point randomly.
 //e.g. var long  = 5, start point is (8-long) = 3.
@@ -116,6 +116,8 @@ console.log(grid)
 //   grid[0][start]=long
 // }
 var shot=""
+var turns = 0
+var winningShots = 0
 //
 // const readline = require('readline');
 // const rl = readline.createInterface({
@@ -136,24 +138,52 @@ var shot=""
  //change this
 function checkShot(shot){
   shot=shot-11
-   shot  =  shot.toString()
-  var i = shot.charAt(0)
-  var j= shot.charAt(1)
+  var shotString  = shot
+  shotString  =  shot.toString()
+  var i = shotString.charAt(0)
+  var j= shotString.charAt(1)
   //check if the grid has this shot.
-    grid[i][j]?userGrid[i][j]="Y":userGrid[i][j]="X"
+    if(grid[i][j]){
+      userGrid[i][j]="Y"
+      winningShots++
+      setText(shot+11,"Y")
+    }
+    else{
+    userGrid[i][j]="X"
+    setText(shot+11,"X")
+  }
+    turns++
     console.log(userGrid)
     console.log(grid[i][j]);
 
+}
+function checkWin(){
+  if (turns<51 && winningShots===17)
+  return true
+  else
+  return false
 }
 // checkShot(shot)
 
 // console.log(userGrid);
 
 $(function() {
-    var $submit = $('#submit')
-    $submit.on('click', function(){
-      var shot =  $('input').val()
-      checkShot(shot)
+
+  var $box = $('.box')
+    // var $submit = $('#submit')
+    $box.on('click', function(){
+      if(checkWin())
+        alert("you won!")
+      else{
+        //refactor to get input from grid : shot = $(this).attr('data-id')
+        //var shot =  $('input').val()
+        var shot = $(this).attr('data-id')
+        checkShot(shot)
+      }
     })
 
 })
+//sets div with data-id of shot, to X or Y depending on if there is a ship.
+function setText(shot,text){
+  $(`[data-id='${shot}']`).text(text)
+}
