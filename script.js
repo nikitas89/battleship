@@ -6,7 +6,6 @@ grid.push(Array(8).fill(0),Array(8).fill(0),Array(8).fill(0),Array(8).fill(0),Ar
 var userGrid = []
 userGrid.push(Array(8).fill(0),Array(8).fill(0),Array(8).fill(0),Array(8).fill(0),Array(8).fill(0),Array(8).fill(0),Array(8).fill(0),Array(8).fill(0))
 
-
 //long ship with length will be indicated with value of 5 at array indexes
 var long = 5
 placeShip(long)
@@ -104,7 +103,7 @@ for (var z = 0; z < 8; z++) {
 //   grid[vertStart][start]=ship
 // }
 // }
-// console.log(grid)
+console.log(grid)
 //--------------------
 //vert placement - find start point randomly.
 //e.g. var long  = 5, start point is (8-long) = 3.
@@ -138,15 +137,15 @@ var winningShots = 0
  //change this
 function checkShot(shot){
   shot=shot-11
-  var shotString  = shot
-  shotString  =  shot.toString()
+  var shotString  = shot //check this code.
+  shotString  =  shotString.toString()
   var i = shotString.charAt(0)
   var j= shotString.charAt(1)
   //check if the grid has this shot.
     if(grid[i][j]){
       userGrid[i][j]="Y"
       winningShots++
-      setText(shot+11,"Y")
+      setText(shot+11,"Y")//check this code.
     }
     else{
     userGrid[i][j]="X"
@@ -168,13 +167,12 @@ function checkWin(){
 // console.log(userGrid);
 
 $(function() {
-
   var $box = $('.box')
     // var $submit = $('#submit')
     $box.on('click', function(){
-      if(checkWin())
-        alert("you won!")
-      else{
+    if(checkWin())
+      alert("you won!")
+    else{
         //refactor to get input from grid : shot = $(this).attr('data-id')
         //var shot =  $('input').val()
         var shot = $(this).attr('data-id')
@@ -186,4 +184,5 @@ $(function() {
 //sets div with data-id of shot, to X or Y depending on if there is a ship.
 function setText(shot,text){
   $(`[data-id='${shot}']`).text(text)
+  text==="Y"? $(`[data-id='${shot}']`).css("color","red"):""
 }
