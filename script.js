@@ -21,7 +21,18 @@ var short = 2
 placeShip(short)
 //------------------------placeship-------------------------/
 function placeShip(ship) {
-  Math.floor(Math.random() * (2)) === 0 ? placeShipHorz(ship) : placeShipVert(ship)
+  if(Math.floor(Math.random() * (2)) === 0){
+    if( !placeShipHorz(ship) ){
+      console.log('HORZ NOT VALID');
+      placeShipVert(ship)
+    }
+ }
+  else{
+    if(!placeShipVert(ship)){
+      console.log('VERT NOT VALID');
+      placeShipHorz(ship)
+    }
+   }
 }
 
 function placeShipHorz(ship) {
@@ -54,6 +65,7 @@ function placeShipHorz(ship) {
     grid[v][i] = ship
   }
   // console.log(grid)
+  return emptyIndexes.length
 } //end placeShipHorz
 function placeShipVert(ship) {
     console.log('placing vert now... '+ship);
@@ -62,8 +74,6 @@ function placeShipVert(ship) {
   for (var k = 0; k < 8-ship; k++) {
     emptyIndexes.push(k)
   }
-
-
   for (var z = 0; z < 8-ship; z++) {
     for (var x = 0; x < ship; x++) {
       if (x + z > 7) {
@@ -81,10 +91,6 @@ function placeShipVert(ship) {
       // console.log('grid value', grid[z + x][h])
     }
   }
-
-
-
-
   // console.log(emptyIndexes)
   console.log('emptyIndexes.length ',emptyIndexes.length); //what to do if emptyindixes is 0? call random no and run for loop again.
   var shipPosIndex = emptyIndexes[Math.floor(Math.random() * emptyIndexes.length)]
@@ -95,42 +101,8 @@ function placeShipVert(ship) {
     grid[i][h] = ship
   }
   // console.log('final grid', grid)
+  return emptyIndexes.length
 } //end placeShipVert
-
-//horz placement - find start point randomly.
-//e.g. var long  = 5, start point is (8-long) = 3.
-//Math.floor does rounding down.
-// var start = Math.floor(Math.random()*(7-ship))
-// var vertStart = Math.floor(Math.random()*(8))
-// console.log(start)
-//will place ship values points in the row with a start index that is randomly selected above.
-//to:do later- loop to check if any value is !==0. change start position if 0 is found.
-//select vertical start randomly
-
-
-//call/write function to check
-// var occupied = false
-// for(var i=0,start;i<ship;start++,i++){
-// occupied= (grid[vertStart][start]!==0)
-// }
-
-// for(var i=0,start;i<ship;start++,i++){
-//   //check this grid[vertStart][start]
-//   grid[vertStart][start]=ship
-// }
-// }
-console.log(grid)
-//--------------------
-//vert placement - find start point randomly.
-//e.g. var long  = 5, start point is (8-long) = 3.
-
-// var start = Math.floor(Math.random()*(8-long+1))
-// console.log(start)
-// //will create nums from 0 to place in a row.
-// for(var i=0,start;i<long;start++,i++){
-//   grid[0][start]=long
-// }
-// module.exports = placeShip() //not using node rn
 
 //------------------------game play-------------------------/
 var shot = ""
