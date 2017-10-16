@@ -61,37 +61,4 @@ function placeShipVert(ship) {
   console.log('final grid', grid)
 } //end placeShipVert
 
-//horz placement - find start point randomly.
-//e.g. var long  = 5, start point is (8-long) = 3.
-//Math.floor does rounding down.
-// var start = Math.floor(Math.random()*(7-ship))
-// var vertStart = Math.floor(Math.random()*(8))
-// console.log(start)
-//will place ship values points in the row with a start index that is randomly selected above.
-//to:do later- loop to check if any value is !==0. change start position if 0 is found.
-//select vertical start randomly
-
-
-//call/write function to check
-// var occupied = false
-// for(var i=0,start;i<ship;start++,i++){
-// occupied= (grid[vertStart][start]!==0)
-// }
-
-// for(var i=0,start;i<ship;start++,i++){
-//   //check this grid[vertStart][start]
-//   grid[vertStart][start]=ship
-// }
-// }
 console.log(grid)
-//--------------------
-//vert placement - find start point randomly.
-//e.g. var long  = 5, start point is (8-long) = 3.
-
-// var start = Math.floor(Math.random()*(8-long+1))
-// console.log(start)
-// //will create nums from 0 to place in a row.
-// for(var i=0,start;i<long;start++,i++){
-//   grid[0][start]=long
-// }
-// module.exports = placeShip() //not using node rn
